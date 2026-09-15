@@ -1847,3 +1847,92 @@ footer{view-transition-name:mt-foot}
 
 /* === szary tekst dociągnięty do czytelności (WCAG 4.5 na wszystkich tłach) === */
 :root{--muted:#696663;}
+
+/* ============================================================
+   MOTYW „M & D" - CZERŃ, STAL I ZŁOTO PROSTO Z LOGO
+   (prośba Szymona 15.09.2026: „popraw logo, zrób stronę w stylu logo").
+   Znak firmy to srebrno-złoty logotyp na czerni - więc cała strona schodzi
+   na ciemny grafit, a złoto #EDB215 (próbka wprost z błyskawicy w logu)
+   zostaje JEDYNYM akcentem. Blok jest OSTATNI w pliku, więc wygrywa
+   z wcześniejszymi :root (pułapka podwójnego :root, wpadka 08.07).
+   ============================================================ */
+:root{
+  --paper:#0D0F12;        /* tło główne - czerń logo, lekko chłodna */
+  --paper-2:#14171B;      /* sekcje alternatywne */
+  --paper-3:#1C2026;      /* wypełnienia */
+  --ink:#F3F4F6;          /* tekst główny - srebro */
+  --ink-soft:#DCDFE4;
+  --muted:#A2A9B2;        /* 7,9:1 na #0D0F12 */
+  --line:rgba(206,212,220,.16);
+  --accent:#EDB215;       /* złoto z błyskawicy */
+  --accent-d:#C8930C;
+  --accent-soft:rgba(237,178,21,.14);
+  --accent-text:#F0BC3A;  /* litera akcentowa na ciemnym - jaśniejsze złoto */
+  --dark:#07080A;         /* stopka i pasy CTA - głębsza czerń niż tło */
+  --sh-sm:0 1px 2px rgba(0,0,0,.45), 0 2px 10px rgba(0,0,0,.35);
+  --sh-md:0 2px 8px rgba(0,0,0,.45), 0 16px 34px -10px rgba(0,0,0,.65);
+  --sh-lg:0 8px 18px rgba(0,0,0,.5), 0 30px 64px -20px rgba(0,0,0,.8);
+}
+
+/* Złoto niesie CIEMNY napis - biały na złocie dawał 2,1:1 (nieczytelne). */
+.btn-accent,.nav .nav-links a.btn-accent,.btn-accent[data-accent-d],.cta-d .btn-accent,
+.btn-accent:hover,.sc-call,.obszar-list li.is-home{color:#101317}
+.obszar-list li.is-home{background:var(--accent);border-color:var(--accent)}
+
+/* Płyty, które w jasnym motywie były białe - teraz stal z delikatnym pionowym przetarciem. */
+/* .btn-light to GŁÓWNY przycisk na czarnym pasie CTA - w ciemnym motywie musi być
+   najjaśniejszym punktem sekcji, czyli złoty (stalowa płyta na czerni ginęła). */
+.btn-light{background:var(--accent);color:#101317;border:1px solid var(--accent)}
+.btn-light:hover{filter:brightness(1.07)}
+/* Znak firmowy w pasku ma oddech - pasek jest wysoki na 64 px. */
+.brand-logo{height:46px;max-width:230px}
+.nav.is-stuck .brand-logo{height:40px}
+@media(max-width:680px){.brand-logo{height:38px;max-width:180px}}
+.svc,.trust-card,.obj-tile,.op-card,.form{
+  background:linear-gradient(180deg,#171B21 0%,#111418 100%);
+  border:1px solid var(--line)}
+.faq-item,.op-google{background:#14181D}
+.form input,.form textarea,.form input:focus,.form textarea:focus{background:#0A0C0F;color:var(--ink)}
+.form input::placeholder,.form textarea::placeholder{color:#7E858E}
+
+/* Hover kart: ten sam standard co w silniku, tylko z czytelnym kontrastem na złocie. */
+@media(hover:hover){
+  .card:hover,.svc:hover,.menu-cat:hover,.prod-card:hover,.pak-card:hover,
+  .faq-item:hover,.obj-tile:hover,.gateway-txt:hover,.trust-card:hover,
+  .op-google:hover,.op-google:focus-visible{
+    background:var(--accent);border-color:var(--accent);color:#101317;filter:none;
+    box-shadow:0 0 0 3px var(--accent-soft),0 10px 26px -16px #000}
+  .card:hover *,.svc:hover *,.faq-item:hover *,.obj-tile:hover *,
+  .gateway-txt:hover *,.trust-card:hover *,.op-google:hover *{color:#101317}
+  .op-google:hover .op-g-ico *,.g-badge .gb-ico *{color:inherit}
+}
+
+/* Mapa Google jest z natury biała - przygaszamy, żeby nie świeciła w ciemnej sekcji. */
+.map{filter:grayscale(.3) contrast(1.04) brightness(.84)}
+
+/* Znak firmowy w stopce + złota kreska nad nią - ten sam detal, co pod „M&D" w logu. */
+footer{border-top:1px solid rgba(237,178,21,.38)}
+.foot-logo{height:72px;width:auto;max-width:300px;object-fit:contain;display:block;margin-bottom:var(--space-4)}
+@media(max-width:680px){.foot-logo{height:56px;max-width:240px}}
+
+/* Hero: czarno-złoty motyw chce głębszego kadru, a bramka mierzyła pod napisami
+   2,64-3,51:1 na telefonie (próg 3,6). Na wąskim ekranie gradient POZIOMY niczego
+   pod tekstem nie zasłania - tam musi iść pionowy. Prawa strona kadru na pulpicie
+   zostaje odsłonięta (lekcja 2026-08-06-004: zero koca na całym zdjęciu). */
+@media(min-width:821px){
+  .hero-fach::after{background:linear-gradient(102deg,
+    rgba(10,12,15,.93) 0%,rgba(10,12,15,.87) 30%,rgba(10,12,15,.62) 55%,
+    rgba(10,12,15,.26) 78%,rgba(10,12,15,.10) 100%)}
+}
+@media(max-width:820px){
+  .hero-fach::after{background:linear-gradient(180deg,
+    rgba(10,12,15,.74) 0%,rgba(10,12,15,.60) 34%,rgba(10,12,15,.80) 68%,rgba(10,12,15,.94) 100%)}
+}
+
+/* Srebrno-złoty znak stoi nad zdjęciem hero - pasek dostaje mocniejszy cień u góry,
+   żeby białe „ELEKTRO" nie ginęło na jasnym fragmencie kadru. */
+.nav:not(.nav-solid)::after{background:linear-gradient(180deg,
+  rgba(8,9,11,.80) 0%,rgba(8,9,11,.36) 55%,rgba(8,9,11,0) 100%)}
+
+/* Nagłówki podstron w tej samej czerni co reszta motywu (były chłodnoszare i odstawały). */
+.pagehead::after{background:linear-gradient(180deg,rgba(10,12,15,.52),rgba(10,12,15,.88))}
